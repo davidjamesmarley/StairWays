@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Services;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StairWays
 {
@@ -49,13 +46,25 @@ namespace StairWays
                 {
                     Console.WriteLine("Enter an array of allowable step increments, for example 2,3,4 or \"2, 3, 4\". \nThen the total number of steps, for example 5. \nTo exit enter Ctrl + C.\n");
 
-                    //int[] inc = new int[] {2,3};
-                    //int tot = 6;
                     int[] inc = GetIncrements();
                     int tot = GetSteps();
 
+                    // There are a few input combinations that we could calculate without calling the method, such as those below:
+                    // 
+                    // If the inc array has a length of 1 and the value is 1 then the result would be equal to the value of tot.
+                    // 
+                    // If the inc array has a length of 1 and the value is 2, and the value of tot is even, then the result would 
+                    // be half the value of tot.
+                    // 
+                    // If the inc array has a length of 1 and the value is n, and the value of tot is divisible by n, then the 
+                    // result would be the value of tot divided by the value of n.
+
+                    // We should also test for invalid input here, such as the minimum value of the inc array being greater than 
+                    // the value of tot, or ensuring all values are positive integers.
+
                     int val = numWays(inc, tot);
 
+                    // This could be refactored out into a method that deals with console output to make the code clearer.
                     Console.Write(String.Format("\nThere is {0} way to climb {1} steps using increments of [", val, tot));
                     for (int i = 0; i < inc.Length; i++)
                     {
